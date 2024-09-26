@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/pages/home.dart';
+import 'package:instagram_clone/responsive_screen/mob_screen_layout.dart';
+import 'package:instagram_clone/responsive_screen/responsive_screen.dart';
+import 'package:instagram_clone/responsive_screen/web_screen_layout.dart';
 import 'package:instagram_clone/utils/colors.dart';
 
 void main() {
@@ -16,7 +18,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark()
           .copyWith(scaffoldBackgroundColor: mobileBackgroundColor),
-      home: const HomePage(),
+      home: const ResponsiveScreenLayout(
+        mobScreen: MobScreenLayout(),
+        webScreen: WebScreenLayout(),
+      ),
     );
   }
 }

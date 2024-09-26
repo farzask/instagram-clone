@@ -1,0 +1,1 @@
+const webScreenLayout = 600;
