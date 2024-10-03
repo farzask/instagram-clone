@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:instagram_clone/pages/signup_screen.dart';
+import 'package:instagram_clone/pages/login_screen.dart';
 import 'package:instagram_clone/utils/colors.dart';
 import 'package:instagram_clone/widgets/textfields.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _fullNameController = TextEditingController();
 
   @override
   void dispose() {
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _usernameController.dispose();
+    _fullNameController.dispose();
   }
 
   @override
@@ -52,6 +56,24 @@ class _LoginScreenState extends State<LoginScreen> {
 
             const SizedBox(height: 20),
 
+            // textfield for Full name
+            TextFieldInput(
+              textEditingController: _fullNameController,
+              hintText: 'Full Name',
+              textInputType: TextInputType.text,
+            ),
+
+            const SizedBox(height: 20),
+
+            // textfield for username
+            TextFieldInput(
+              textEditingController: _usernameController,
+              hintText: 'Username',
+              textInputType: TextInputType.text,
+            ),
+
+            const SizedBox(height: 20),
+
             // textfield for password
             TextFieldInput(
               textEditingController: _passwordController,
@@ -67,14 +89,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const LoginScreen()));
+                        builder: (context) => const SignupScreen()));
               },
               minWidth: double.infinity,
               height: 48,
               color: blueColor,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8)),
-              child: const Text('Login'),
+              child: const Text('Sign Up'),
             ),
 
             Flexible(flex: 2, child: Container()),
@@ -82,16 +104,16 @@ class _LoginScreenState extends State<LoginScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('Don\'t have an account?'),
+                const Text('Already have an account?'),
                 InkWell(
                   onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const SignupScreen()));
+                            builder: (context) => const LoginScreen()));
                   },
                   child: const Text(
-                    ' Sign up',
+                    ' Login',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),

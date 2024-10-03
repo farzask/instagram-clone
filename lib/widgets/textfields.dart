@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class TextFieldInput extends StatelessWidget {
   final TextEditingController textEditingController;
   final bool isPassword;
+  final bool isUsername;
   final String hintText;
   final TextInputType textInputType;
 
@@ -11,6 +12,7 @@ class TextFieldInput extends StatelessWidget {
     required this.textEditingController,
     required this.hintText,
     this.isPassword = false,
+    this.isUsername = false,
     required this.textInputType,
   });
 
@@ -22,6 +24,8 @@ class TextFieldInput extends StatelessWidget {
       controller: textEditingController,
       decoration: InputDecoration(
         hintText: hintText,
+        hintStyle: TextStyle(
+            fontWeight: FontWeight.w400, color: Colors.white.withOpacity(0.3)),
         border: inputBorder,
         focusedBorder: inputBorder,
         enabledBorder: inputBorder,
