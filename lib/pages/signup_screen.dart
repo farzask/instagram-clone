@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instagram_clone/pages/login_screen.dart';
+import 'package:instagram_clone/resources/auth_methods.dart';
 import 'package:instagram_clone/utils/colors.dart';
 import 'package:instagram_clone/widgets/textfields.dart';
 
@@ -25,6 +26,8 @@ class _SignupScreenState extends State<SignupScreen> {
     _usernameController.dispose();
     _fullNameController.dispose();
   }
+
+  final FireBaseAuth _authmethods = FireBaseAuth();
 
   @override
   Widget build(BuildContext context) {
@@ -83,13 +86,16 @@ class _SignupScreenState extends State<SignupScreen> {
             ),
 
             const SizedBox(height: 20),
-            //login button
+            //signup button
             MaterialButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SignupScreen()));
+              onPressed: () async {
+                String response = await _authmethods.signUp(
+                    email: _emailController.text,
+                    fullName: _fullNameController.text,
+                    userName: _usernameController.text,
+                    password: _passwordController.text);
+
+                debugPrint(response);
               },
               minWidth: double.infinity,
               height: 48,
